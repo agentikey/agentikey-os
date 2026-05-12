@@ -1,0 +1,23 @@
+# Agentikey Claude OS — example crontab entries
+#
+# Install by running `crontab -e` and pasting the lines you want active.
+# This file is documentation only — nothing here is installed automatically.
+#
+# Each line invokes Claude Code in headless mode (`claude -p`) inside the OS repo.
+# Make sure `claude` is on your PATH for cron's environment (cron has a minimal PATH
+# by default; you may need an absolute path like /opt/homebrew/bin/claude).
+#
+# Format: <minute> <hour> <day> <month> <day-of-week> <command>
+
+# ── Foundations ──────────────────────────────────────────────────────────────
+
+# Weekly sweep — Monday 9am local
+# 0 9 * * 1 cd /Users/osoto/AgentikeyClaudeOS && claude -p "/sweep" >> archives/sweeps/cron.log 2>&1
+
+# Weekly stretch — Friday 4pm local
+# 0 16 * * 5 cd /Users/osoto/AgentikeyClaudeOS && claude -p "/stretch" >> archives/stretches/cron.log 2>&1
+
+# ── Ops (enable per active client via clients/<slug>/ops-overrides.md) ───────
+
+# Weekly vault cleanup — Sunday 7pm local
+# 0 19 * * 0 cd /Users/osoto/AgentikeyClaudeOS && claude -p "run the ops vault-cleanup workflow" >> archives/vault-cleanup/cron.log 2>&1
